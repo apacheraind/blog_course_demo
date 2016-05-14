@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,22 +11,26 @@
 </head>
 <body>
 	<header id="main_navigation" class="clearfix">
-	    <%= link_to "Mackenzie Child", root_path, class: "name" %>
+		<%= link_to "Mackenzie Child", root_path, class: "name" %>
 		<nav>
 			<%= link_to "Articles", posts_path %>
 			<%= link_to "Projects", projects_path %>
-			<a href="#">Contact</a>
+			<%= link_to "Contact", new_contact_path %>
+			<% if user_signed_in? %>
+				<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+			<% end %>
 		</nav>
 	</header>
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% elsif alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
+
+	<% if notice %>
+		<p class="notice"><%= notice %></p>
+	<% elsif alert %>
+		<p class="alert"><%= alert %></p>
+	<% end %>
 
 	<%= yield %>
 
-<footer id="main_footer">
+	<footer id="main_footer">
 		<p class="copyright">&copy;2015 Mackenzie Child</p>
 		<nav>
 			<a href="http://twitter.com/mackenziechild" target="_blank"><i class="fa fa-twitter"></i></a>
